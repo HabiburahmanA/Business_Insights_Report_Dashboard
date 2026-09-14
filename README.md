@@ -61,6 +61,10 @@ since the front end already handles that failure gracefully).
 
 ```
 index.html              Entry point — references the built files in dist/
+public/
+  favicon.svg            Checked-in favicon asset
+  robots.txt             Excludes server endpoints from crawlers
+  sitemap.xml            Replace the placeholder hostname before deployment
 src/
   app.js                Readable source — the whole app, one file
   styles.css             Readable source CSS
@@ -69,15 +73,16 @@ dist/
   styles.min.css          Built/minified
 api/
   ai-insights.js          Vercel serverless function — the AI proxy
+  health.js               Lightweight deployment health endpoint
 samples/
-  sample-retail-sales.csv       220 rows — trends, categories, correlations
-  sample-hr-headcount.csv       150 rows — a different domain, same engine
-  sample-with-blank-cells.csv   10 rows, 4 deliberate blanks — try the gate
-  sample-compare-jan.csv        110 rows — pair with -feb for compare mode
-  sample-compare-feb.csv        130 rows — same columns, different month
+  sample-retail-sales.csv       Small retail dataset — trends and categories
+  sample-hr-headcount.csv       Small HR dataset — a different domain
+  sample-with-blank-cells.csv   Deliberate blanks — try the data-quality gate
+  sample-compare-jan.csv        January comparison fixture
+  sample-compare-feb.csv        February comparison fixture
 test/
-  blackbox.test.js         End-to-end test driven through the actual dist/app.min.js
-package.json, vercel.json, .gitignore, .env.example
+  blackbox.test.js         Smoke checks for build output and secret placeholders
+package.json, package-lock.json, vercel.json, .gitignore, .env.example
 ```
 
 `src/` is what you edit. `dist/` is generated — never hand-edit it.

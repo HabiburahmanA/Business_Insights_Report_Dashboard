@@ -2,6 +2,20 @@ node_modules/
 .env
 .env.local
 .env*.local
+.env.*
+!.env.example
 .vercel
+
+# Secrets and local credentials
+*.pem
+*.key
+*.crt
+credentials*.json
+secrets*.json
+
+# Generated output and local tooling
+dist/
+.DS_Store
+Thumbs.db
 *.log
 .DS_Store
