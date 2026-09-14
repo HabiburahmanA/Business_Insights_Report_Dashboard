@@ -1,0 +1,20 @@
+{
+  "name": "business-insights-report",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Upload any CSV and get an automatic business report: KPIs, trends, category breakdowns, correlations, and rule-based findings, with an optional AI-written narrative. Runs entirely in the browser except the optional AI feature, which uses a server-side proxy so the API key is never exposed to clients.",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "npm run build:js && npm run build:css",
+    "build:js": "terser src/app.js --compress drop_debugger=true,passes=2 --mangle --format comments=false --output dist/app.min.js",
+    "build:css": "cleancss -o dist/styles.min.css src/styles.css",
+    "test": "node test/blackbox.test.js",
+    "preview": "npx serve ."
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "terser": "^5.51.2"
+  }
+}

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Insights Report — Upload a CSV, Get an Instant Report</title>
+<meta name="description" content="Upload any CSV and get an automatic business report: KPIs, trends, category breakdowns, correlations, and rule-based findings — with an optional AI-written narrative. Runs entirely in your browser.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230078D4' stroke-width='2.4'%3E%3Cpath d='M4 19h16M7 19V9M12 19V5M17 19v-7'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="dist/styles.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js" defer></script>
+</head>
+<body>
+
+<div id="loading-overlay"><div class="spinner"></div><div id="loading-text">Reading your file…</div></div>
+
+<div class="app-shell">
+  <!-- ============================== SIDEBAR (report nav) ============================== -->
+  <aside class="sidebar hidden" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19h16M7 19V9M12 19V5M17 19v-7"/></svg>
+      </div>
+      <div>
+        <div class="brand-title">Business Insights</div>
+        <div class="brand-subtitle">Data Report</div>
+      </div>
+    </div>
+    <nav class="side-nav" id="tab-nav">
+      <button class="tab-btn active" data-tab="overview"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Overview</button>
+      <button class="tab-btn" data-tab="dataprofile"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="13" y2="18"/></svg>Data Profile</button>
+      <button class="tab-btn" data-tab="trends"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 16l5-6 4 3 7-9"/><path d="M15 4h5v5"/></svg>Trends</button>
+      <button class="tab-btn" data-tab="categories"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="12" width="4" height="8"/><rect x="10" y="7" width="4" height="13"/><rect x="16" y="3" width="4" height="17"/></svg>Categories</button>
+      <button class="tab-btn" data-tab="correlations"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20L20 4"/><circle cx="6" cy="18" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="18" cy="6" r="1.6" fill="currentColor" stroke="none"/></svg>Correlations</button>
+      <button class="tab-btn" data-tab="insights"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18h6M10 21h4"/><path d="M12 3a6.5 6.5 0 00-3.8 11.8c.5.4.8 1 .8 1.7v.5h6v-.5c0-.7.3-1.3.8-1.7A6.5 6.5 0 0012 3z"/></svg>Findings</button>
+    </nav>
+    <div class="sidebar-note">Your data and answers stay saved to this report on this device until cleared.</div>
+  </aside>
+
+  <!-- ============================== MAIN COLUMN ============================== -->
+  <div class="main-col">
+
+    <!-- ============================== BUSINESS CONTEXT SCREEN ============================== -->
+    <section id="screen-context">
+      <div class="context-shell">
+        <span class="eyebrow">Before You Upload</span>
+        <h2>Tell us about this report</h2>
+        <p class="lede">A few quick questions so the analysis is framed for your business — not just generic column stats.</p>
+
+        <div class="mode-toggle" role="tablist" aria-label="Analysis mode">
+          <button class="mode-toggle-btn active" data-mode="single" type="button">Single File</button>
+          <button class="mode-toggle-btn" data-mode="compare" type="button">Compare Periods</button>
+        </div>
+
+        <div class="context-form">
+          <div class="field">
+            <label for="ctx-description" id="ctx-description-label">What is this file about?</label>
+            <textarea id="ctx-description" rows="2" placeholder="e.g. Monthly sales transactions from our online store"></textarea>
+          </div>
+          <div class="field">
+            <label for="ctx-domain">What's your business type / domain?</label>
+            <select id="ctx-domain">
+              <option value="" selected disabled>Select one…</option>
+              <option>Retail / E-commerce</option>
+              <option>Healthcare</option>
+              <option>Finance / Banking</option>
+              <option>SaaS / Technology</option>
+              <option>Manufacturing</option>
+              <option>Human Resources</option>
+              <option>Marketing / Advertising</option>
+              <option>Education</option>
+              <option>Logistics / Supply Chain</option>
+              <option>Real Estate</option>
+              <option>Nonprofit</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field hidden" id="ctx-domain-other-wrap">
+            <label for="ctx-domain-other">Please specify your industry</label>
+            <input type="text" id="ctx-domain-other" placeholder="Your industry">
+          </div>
+          <div class="field">
+            <label for="ctx-expectations">What are you hoping to learn from this report?</label>
+            <textarea id="ctx-expectations" rows="2" placeholder="e.g. Which products sell best, and how revenue trends month to month"></textarea>
+            <div class="hint">This also shapes which tabs we point you to first.</div>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="btn-continue-context" disabled>Continue to Upload →</button>
+      </div>
+    </section>
+
+    <!-- ============================== UPLOAD SCREEN ============================== -->
+    <section id="screen-upload" class="hidden">
+      <div class="upload-shell" id="upload-shell">
+        <div class="eyebrow" style="margin-bottom:14px;">New Report</div>
+        <h2>Upload your dataset</h2>
+        <p class="lede" id="upload-recap">Analyzing your file.</p>
+
+        <div id="upload-single-mode">
+          <div class="dropzone" id="dropzone">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V4M12 4L7 9M12 4l5 5"/><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+            <h3>Drag and drop your CSV file</h3>
+            <p>or browse from your computer</p>
+            <label class="btn btn-primary" for="file-input">Browse Files</label>
+            <input type="file" id="file-input" accept=".csv,text/csv">
+          </div>
+
+          <div id="upload-status" role="status" aria-live="polite"></div>
+          <div id="upload-error" class="hidden" role="alert"></div>
+
+          <div class="upload-required">Any CSV is supported — column types are detected automatically. Every column must be fully populated; files with blank cells will be rejected so you can clean them first.</div>
+
+          <div class="sample-files">
+            <div class="sample-files-label">No file handy? Try a sample</div>
+            <div class="sample-files-grid">
+              <a class="sample-chip" href="samples/sample-retail-sales.csv" download>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4M12 4L7 9M12 4l5 5"/><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+                <span>Retail Sales<br><small>220 rows · trends, categories, correlations</small></span>
+              </a>
+              <a class="sample-chip" href="samples/sample-hr-headcount.csv" download>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4M12 4L7 9M12 4l5 5"/><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+                <span>HR Headcount<br><small>150 rows · a different domain</small></span>
+              </a>
+              <a class="sample-chip sample-chip-warn" href="samples/sample-with-blank-cells.csv" download>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L2.7 17a2 2 0 001.7 3h15.2a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg>
+                <span>Has Blank Cells<br><small>10 rows · demonstrates the data-quality gate</small></span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div id="upload-compare-mode" class="hidden">
+          <p class="compare-intro">Upload 2 or more CSVs with the same columns — each one becomes a period. We'll auto-label periods from a date column when we find one, and you can rename them.</p>
+          <div class="period-slots" id="period-slots"></div>
+          <button class="btn btn-ghost btn-sm" id="btn-add-period" type="button">+ Add Another Period</button>
+          <button class="btn btn-primary" id="btn-compare-submit" type="button" disabled style="width:100%; margin-top:16px;">Add at least 2 periods</button>
+
+          <div class="sample-files">
+            <div class="sample-files-label">No files handy? Try these two months</div>
+            <div class="sample-files-grid sample-files-grid-2">
+              <a class="sample-chip" href="samples/sample-compare-jan.csv" download>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4M12 4L7 9M12 4l5 5"/><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+                <span>January 2024<br><small>110 rows</small></span>
+              </a>
+              <a class="sample-chip" href="samples/sample-compare-feb.csv" download>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4M12 4L7 9M12 4l5 5"/><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+                <span>February 2024<br><small>130 rows, same columns</small></span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <button class="link-back" id="btn-edit-context">← Edit your answers</button>
+      </div>
+    </section>
+
+
+    <!-- ============================== BLANK-DATA BLOCKING SCREEN ============================== -->
+    <section id="screen-blank-error" class="hidden">
+      <div class="upload-shell" style="max-width:660px;">
+        <div class="eyebrow" style="margin-bottom:14px;color:var(--bad);">Data Quality Issue</div>
+        <h2><span id="blank-error-count">0</span> column(s) contain blank values</h2>
+        <p class="lede">Every column must be fully populated before this report can process it. Clean the values below in your source file, then upload it again.</p>
+        <div class="panel" style="text-align:left;">
+          <div class="table-scroll">
+            <table class="ledger">
+              <thead><tr><th>Column</th><th class="num">Blank Cells</th><th class="num">% of Rows</th><th>Example Row(s)</th></tr></thead>
+              <tbody id="blank-error-table-body"></tbody>
+            </table>
+          </div>
+          <div class="log-header"><span class="eyebrow">Full Log</span><span class="small-n"><span id="blank-error-log-total">0</span> occurrence(s)</span></div>
+          <div class="log-panel" id="blank-error-log"></div>
+          <div class="log-note hidden" id="blank-error-log-note">Showing the first 300 entries — <span id="blank-error-log-remaining">0</span> more not shown.</div>
+        </div>
+        <button class="btn btn-primary" id="btn-retry-upload" style="margin-top:20px;">Choose a Different File</button>
+      </div>
+    </section>
+
+    <!-- ============================== DASHBOARD ============================== -->
+    <div id="screen-dashboard" class="hidden">
+      <div class="topbar">
+        <div class="topbar-row1">
+          <div class="util-meta">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="util-meta-name" id="dataset-filename">—</span>
+            <span class="util-meta-count" id="dataset-count">—</span>
+          </div>
+          <div class="util-actions">
+            <button class="btn btn-sm btn-ghost" id="btn-export">Export Data Profile</button>
+            <button class="btn btn-sm" id="btn-replace">Replace Data</button>
+            <button class="btn btn-sm btn-ghost" id="btn-clear">Clear Data</button>
+          </div>
+        </div>
+        <div class="filters-row">
+          <div id="filters-row-dynamic" style="display:contents;"></div>
+          <button class="filter-reset" id="btn-reset-filters">Reset filters</button>
+          <span class="filter-note" id="filter-note"></span>
+        </div>
+      </div>
+
+      <main>
+        <div id="tab-overview" class="tab-panel active"></div>
+        <div id="tab-dataprofile" class="tab-panel"></div>
+        <div id="tab-trends" class="tab-panel"></div>
+        <div id="tab-categories" class="tab-panel"></div>
+        <div id="tab-correlations" class="tab-panel"></div>
+        <div id="tab-insights" class="tab-panel"></div>
+        <div id="tab-compare-overview" class="tab-panel"></div>
+        <div id="tab-compare-trends" class="tab-panel"></div>
+        <div id="tab-compare-categories" class="tab-panel"></div>
+        <div id="tab-compare-insights" class="tab-panel"></div>
+      </main>
+
+      <footer class="site-footer">
+        <p>Automated analysis of your uploaded file. Rule-based findings and any AI-generated narrative are based on statistical patterns, not domain expertise — use judgment before acting on them. Associations shown are not proof of causation.</p>
+      </footer>
+    </div>
+
+  </div>
+</div>
+
+<script src="dist/app.min.js" defer></script>
+</body>
+</html>
