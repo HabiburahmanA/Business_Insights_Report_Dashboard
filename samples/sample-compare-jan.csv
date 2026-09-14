@@ -1,4 +1,111 @@
-Date,Product,Region,Quantity,Revenue
-2024-01-05,Widget A,North,3,120.00
-2024-01-12,Widget B,South,5,275.00
-2024-01-18,Widget C,West,2,90.00
+OrderID,OrderDate,Region,Category,Product,Channel,Quantity,UnitPrice,Revenue,Status
+ORD-20000,2024-01-15,West,Office Supplies,Desk Organizer,Online,3,89.99,269.97,Cancelled
+ORD-20001,2024-01-11,West,Electronics,USB-C Hub,In-Store,2,34.99,69.98,Completed
+ORD-20002,2024-01-07,North,Electronics,USB-C Hub,In-Store,3,89.99,269.97,Completed
+ORD-20003,2024-01-15,North,Electronics,Laptop Stand,In-Store,1,129.99,129.99,Completed
+ORD-20004,2024-01-26,East,Electronics,Bluetooth Speaker,In-Store,2,129.99,259.98,Completed
+ORD-20005,2024-01-28,East,Office Supplies,Sticky Notes,In-Store,2,9.99,19.98,Completed
+ORD-20006,2024-01-01,East,Office Supplies,Pen Set,In-Store,2,89.99,179.98,Cancelled
+ORD-20007,2024-01-25,South,Office Supplies,Notebook Pack,Online,2,14.99,29.98,Pending
+ORD-20008,2024-01-06,West,Office Supplies,Pen Set,In-Store,3,249.99,749.97,Cancelled
+ORD-20009,2024-01-31,East,Electronics,USB-C Hub,Online,5,9.99,49.95,Completed
+ORD-20010,2024-01-27,South,Electronics,Bluetooth Speaker,Online,5,249.99,1249.95,Cancelled
+ORD-20011,2024-01-30,East,Office Supplies,Sticky Notes,Online,1,19.99,19.99,Cancelled
+ORD-20012,2024-01-11,North,Office Supplies,Desk Organizer,In-Store,1,49.99,49.99,Completed
+ORD-20013,2024-01-22,South,Electronics,Bluetooth Speaker,In-Store,1,49.99,49.99,Completed
+ORD-20014,2024-01-04,North,Electronics,USB-C Hub,Phone Order,1,129.99,129.99,Completed
+ORD-20015,2024-01-01,South,Electronics,Bluetooth Speaker,Phone Order,1,9.99,9.99,Pending
+ORD-20016,2024-01-08,East,Furniture,Standing Desk,In-Store,1,89.99,89.99,Pending
+ORD-20017,2024-01-12,North,Office Supplies,Pen Set,Phone Order,1,49.99,49.99,Completed
+ORD-20018,2024-01-17,South,Furniture,Standing Desk,Online,5,34.99,174.95,Completed
+ORD-20019,2024-01-01,North,Electronics,Wireless Mouse,In-Store,1,89.99,89.99,Completed
+ORD-20020,2024-01-05,South,Office Supplies,Pen Set,In-Store,5,34.99,174.95,Cancelled
+ORD-20021,2024-01-08,East,Office Supplies,Pen Set,In-Store,5,49.99,249.95,Completed
+ORD-20022,2024-01-19,East,Office Supplies,Pen Set,In-Store,1,9.99,9.99,Pending
+ORD-20023,2024-01-31,North,Office Supplies,Notebook Pack,Online,5,34.99,174.95,Pending
+ORD-20024,2024-01-14,West,Furniture,Bookshelf,In-Store,1,9.99,9.99,Completed
+ORD-20025,2024-01-02,South,Office Supplies,Desk Organizer,Phone Order,5,9.99,49.95,Completed
+ORD-20026,2024-01-11,East,Office Supplies,Notebook Pack,Phone Order,3,249.99,749.97,Completed
+ORD-20027,2024-01-12,North,Electronics,Laptop Stand,Online,1,34.99,34.99,Cancelled
+ORD-20028,2024-01-06,East,Electronics,USB-C Hub,Phone Order,5,19.99,99.95,Cancelled
+ORD-20029,2024-01-29,South,Office Supplies,Desk Organizer,Phone Order,1,34.99,34.99,Cancelled
+ORD-20030,2024-01-29,South,Furniture,Office Chair,Phone Order,1,89.99,89.99,Completed
+ORD-20031,2024-01-02,West,Office Supplies,Sticky Notes,In-Store,1,14.99,14.99,Cancelled
+ORD-20032,2024-01-23,West,Office Supplies,Notebook Pack,Online,2,19.99,39.98,Completed
+ORD-20033,2024-01-08,West,Electronics,Wireless Mouse,Online,2,49.99,99.98,Pending
+ORD-20034,2024-01-23,North,Office Supplies,Sticky Notes,Online,5,89.99,449.95,Completed
+ORD-20035,2024-01-05,South,Electronics,USB-C Hub,Phone Order,1,129.99,129.99,Completed
+ORD-20036,2024-01-25,West,Office Supplies,Sticky Notes,Online,2,9.99,19.98,Completed
+ORD-20037,2024-01-25,North,Office Supplies,Desk Organizer,In-Store,2,9.99,19.98,Completed
+ORD-20038,2024-01-28,East,Electronics,Bluetooth Speaker,Online,2,49.99,99.98,Pending
+ORD-20039,2024-01-16,North,Office Supplies,Notebook Pack,Online,1,89.99,89.99,Pending
+ORD-20040,2024-01-16,North,Electronics,Wireless Mouse,In-Store,2,19.99,39.98,Completed
+ORD-20041,2024-01-09,North,Furniture,Office Chair,In-Store,5,249.99,1249.95,Completed
+ORD-20042,2024-01-17,West,Office Supplies,Pen Set,Phone Order,1,19.99,19.99,Pending
+ORD-20043,2024-01-02,North,Electronics,USB-C Hub,Phone Order,3,9.99,29.97,Completed
+ORD-20044,2024-01-15,East,Office Supplies,Notebook Pack,Phone Order,2,49.99,99.98,Completed
+ORD-20045,2024-01-25,North,Office Supplies,Desk Organizer,Online,2,34.99,69.98,Pending
+ORD-20046,2024-01-18,North,Office Supplies,Sticky Notes,Online,2,14.99,29.98,Pending
+ORD-20047,2024-01-18,East,Electronics,Bluetooth Speaker,Online,1,14.99,14.99,Cancelled
+ORD-20048,2024-01-12,East,Office Supplies,Sticky Notes,Phone Order,1,9.99,9.99,Cancelled
+ORD-20049,2024-01-17,North,Electronics,USB-C Hub,Online,5,19.99,99.95,Cancelled
+ORD-20050,2024-01-07,South,Office Supplies,Desk Organizer,Online,5,14.99,74.95,Completed
+ORD-20051,2024-01-16,North,Office Supplies,Sticky Notes,In-Store,1,249.99,249.99,Completed
+ORD-20052,2024-01-06,South,Electronics,USB-C Hub,In-Store,2,9.99,19.98,Completed
+ORD-20053,2024-01-02,East,Office Supplies,Desk Organizer,Online,1,89.99,89.99,Completed
+ORD-20054,2024-01-21,West,Electronics,USB-C Hub,Online,2,34.99,69.98,Completed
+ORD-20055,2024-01-11,North,Electronics,Bluetooth Speaker,Online,5,129.99,649.95,Cancelled
+ORD-20056,2024-01-22,South,Electronics,Bluetooth Speaker,Online,2,19.99,39.98,Completed
+ORD-20057,2024-01-07,East,Office Supplies,Sticky Notes,In-Store,1,49.99,49.99,Pending
+ORD-20058,2024-01-29,North,Furniture,Office Chair,Phone Order,1,129.99,129.99,Pending
+ORD-20059,2024-01-17,North,Furniture,Office Chair,Phone Order,3,19.99,59.97,Pending
+ORD-20060,2024-01-07,South,Electronics,Bluetooth Speaker,Phone Order,5,19.99,99.95,Completed
+ORD-20061,2024-01-23,West,Office Supplies,Desk Organizer,Phone Order,2,89.99,179.98,Completed
+ORD-20062,2024-01-06,East,Office Supplies,Sticky Notes,Online,1,89.99,89.99,Pending
+ORD-20063,2024-01-03,North,Office Supplies,Desk Organizer,In-Store,2,89.99,179.98,Pending
+ORD-20064,2024-01-02,East,Office Supplies,Notebook Pack,Online,2,249.99,499.98,Completed
+ORD-20065,2024-01-26,West,Office Supplies,Pen Set,In-Store,1,14.99,14.99,Pending
+ORD-20066,2024-01-29,East,Electronics,Bluetooth Speaker,Online,1,34.99,34.99,Cancelled
+ORD-20067,2024-01-29,East,Office Supplies,Pen Set,Phone Order,3,14.99,44.97,Completed
+ORD-20068,2024-01-22,West,Office Supplies,Notebook Pack,In-Store,3,129.99,389.97,Cancelled
+ORD-20069,2024-01-14,East,Electronics,Bluetooth Speaker,Online,2,34.99,69.98,Completed
+ORD-20070,2024-01-03,North,Electronics,USB-C Hub,Phone Order,2,19.99,39.98,Completed
+ORD-20071,2024-01-08,North,Electronics,Bluetooth Speaker,Phone Order,1,34.99,34.99,Completed
+ORD-20072,2024-01-15,South,Office Supplies,Pen Set,In-Store,2,14.99,29.98,Completed
+ORD-20073,2024-01-03,North,Office Supplies,Sticky Notes,Phone Order,2,129.99,259.98,Completed
+ORD-20074,2024-01-07,East,Electronics,Laptop Stand,Online,1,129.99,129.99,Completed
+ORD-20075,2024-01-30,North,Electronics,USB-C Hub,Phone Order,3,19.99,59.97,Cancelled
+ORD-20076,2024-01-29,East,Electronics,Laptop Stand,Online,2,14.99,29.98,Completed
+ORD-20077,2024-01-02,North,Office Supplies,Desk Organizer,Phone Order,1,49.99,49.99,Completed
+ORD-20078,2024-01-14,North,Office Supplies,Notebook Pack,Phone Order,5,19.99,99.95,Cancelled
+ORD-20079,2024-01-07,West,Office Supplies,Notebook Pack,In-Store,1,19.99,19.99,Completed
+ORD-20080,2024-01-26,South,Office Supplies,Desk Organizer,Phone Order,2,89.99,179.98,Completed
+ORD-20081,2024-01-22,North,Office Supplies,Notebook Pack,Phone Order,3,249.99,749.97,Completed
+ORD-20082,2024-01-23,South,Office Supplies,Pen Set,Online,3,249.99,749.97,Completed
+ORD-20083,2024-01-02,North,Electronics,Laptop Stand,Phone Order,1,34.99,34.99,Cancelled
+ORD-20084,2024-01-16,North,Office Supplies,Desk Organizer,Online,2,34.99,69.98,Completed
+ORD-20085,2024-01-16,South,Electronics,USB-C Hub,Phone Order,5,34.99,174.95,Pending
+ORD-20086,2024-01-10,East,Electronics,Bluetooth Speaker,Online,1,89.99,89.99,Completed
+ORD-20087,2024-01-26,West,Office Supplies,Sticky Notes,Online,2,14.99,29.98,Completed
+ORD-20088,2024-01-30,North,Electronics,Wireless Mouse,In-Store,1,129.99,129.99,Completed
+ORD-20089,2024-01-16,West,Office Supplies,Notebook Pack,In-Store,1,14.99,14.99,Completed
+ORD-20090,2024-01-23,East,Office Supplies,Notebook Pack,In-Store,2,19.99,39.98,Pending
+ORD-20091,2024-01-21,North,Office Supplies,Desk Organizer,In-Store,1,19.99,19.99,Pending
+ORD-20092,2024-01-07,East,Furniture,Standing Desk,Online,3,34.99,104.97,Completed
+ORD-20093,2024-01-04,South,Office Supplies,Pen Set,In-Store,3,49.99,149.97,Completed
+ORD-20094,2024-01-07,North,Office Supplies,Pen Set,Phone Order,2,89.99,179.98,Completed
+ORD-20095,2024-01-14,North,Furniture,Bookshelf,Phone Order,1,14.99,14.99,Cancelled
+ORD-20096,2024-01-09,North,Office Supplies,Sticky Notes,Online,5,89.99,449.95,Cancelled
+ORD-20097,2024-01-09,West,Electronics,Bluetooth Speaker,Online,2,14.99,29.98,Pending
+ORD-20098,2024-01-26,North,Electronics,Bluetooth Speaker,Phone Order,3,129.99,389.97,Completed
+ORD-20099,2024-01-19,South,Furniture,Office Chair,Phone Order,2,19.99,39.98,Completed
+ORD-20100,2024-01-09,North,Electronics,Laptop Stand,In-Store,1,89.99,89.99,Pending
+ORD-20101,2024-01-05,East,Electronics,Laptop Stand,Online,5,129.99,649.95,Completed
+ORD-20102,2024-01-23,South,Office Supplies,Sticky Notes,Online,5,89.99,449.95,Pending
+ORD-20103,2024-01-17,North,Furniture,Bookshelf,In-Store,2,129.99,259.98,Completed
+ORD-20104,2024-01-23,South,Electronics,Laptop Stand,Online,2,249.99,499.98,Completed
+ORD-20105,2024-01-24,North,Electronics,Wireless Mouse,In-Store,3,129.99,389.97,Completed
+ORD-20106,2024-01-08,South,Electronics,Wireless Mouse,In-Store,2,9.99,19.98,Completed
+ORD-20107,2024-01-29,East,Office Supplies,Desk Organizer,In-Store,2,49.99,99.98,Completed
+ORD-20108,2024-01-18,East,Office Supplies,Sticky Notes,Phone Order,3,89.99,269.97,Pending
+ORD-20109,2024-01-19,North,Office Supplies,Desk Organizer,Phone Order,2,19.99,39.98,Pending
