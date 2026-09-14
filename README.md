@@ -65,6 +65,7 @@ public/
   favicon.svg            Checked-in favicon asset
   robots.txt             Excludes server endpoints from crawlers
   sitemap.xml            Replace the placeholder hostname before deployment
+  vendor/                Local Chart.js and Papa Parse browser bundles
 src/
   app.js                Readable source — the whole app, one file
   styles.css             Readable source CSS
